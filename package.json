@@ -1,0 +1,12 @@
+{
+  "name": "socket-chat-example",
+  "version": "0.0.1",
+  "description": "my first socket.io app",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cassandra-driver": "^3.2.2",
+    "express": "^4.15.2",
+    "promised-io": "^0.3.5",
+    "socket.io": "^1.7.3"
+  }
+}

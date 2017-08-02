@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <style>
+            body{
+                background-color: honeydew;
+            }
+            .signUp{
+                border: 1px solid black;
+                position: relative;
+                top: 50%;
+                left:50%;
+                transform: translate(-50%, -50%);
+            }
+            input{
+                margin-top: 10px;
+            }
+
+            #signupBtn{
+                margin-top: 10px;
+            }
+
+        </style>
+
+    </head>
+    <body>
+        <div class="signUp">
+            <form method="post" action="/signup.html">
+                <label for="fname">First Name:</label>
+                <input type="text" name="fname" id="fname" required>
+                <br />
+                <label for="lname">Last Name:</label>
+                <input type="text" name="lname" id="lname" required>
+                <br />
+                <label for="userid">User Id:</label>
+                <input type="text" name="userid" id="userid" required>
+                <br />
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" required>
+                <br />
+                <button type="submit" id="signupBtn">Sign Up</button>
+            </form>
+        </div>
+        
+    </body>
+</html>

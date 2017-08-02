@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<style>
+
+html,body,.container{
+height:100%;
+width:100%;
+margin:0;
+padding:0;
+}
+
+.container{
+display:flex;
+flex-direction: column;
+justify-content: space-between;
+background-color: green;
+}
+
+.heading{
+text-align:center;
+
+}
+
+.input_box{
+width:100%;
+align-self: flex-end;
+
+}
+
+#input_text{
+width:92%;
+height:1.2em;
+font-size:1.2em;
+}
+
+#send{
+width:7%;
+height:1.5em;
+font-size:1.2em;
+}
+
+</style>
+</head>
+
+<body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+<script>
+
+$(function () {
+    var socket = io();
+
+    $('form').submit(function(){
+      //socket.emit('chat message', $('#input_text').val());
+      socket.emit("privateMess",{"toUser":$('#toUser').val(),"message":$('#input_text').val()});
+      $('#messages').append($('<li style="float:right">').text($('#input_text').val()));
+      $('#input_text').val('');
+      return false;
+    });
+	
+  socket.on('chat message',function(msg){
+	$('#messages').append($('<li style="float:left">').text(msg));
+	});
+
+  socket.on("hey", function(data){
+    console.log("got the data from the other side ", data);
+  })
+
+  socket.on("privateMess", function(data){
+    console.log("got data from the" , data);
+      $('#messages').append($('<li style="float:left">').text(data));
+  });
+
+
+  });
+</script>
+
+<div class='container'>
+<div>
+	<h2 class="heading" style="text-align:center">ChatApp</h2>
+</div>
+
+<ul id='messages'></ul>
+
+<div class="input_box"style="margin-bottom:0px">
+	<form>
+     <input type="text" id="toUser" autocomplete="off" />
+	   <input id='input_text' autocomplete="off" /><button id='send'>Send!</button>
+	</form>
+</div>
+</div>
+</body>
+</html>
